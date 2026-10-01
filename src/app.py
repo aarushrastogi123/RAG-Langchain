@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from langserve import add_routes
@@ -34,6 +34,19 @@ app.add_middleware(
 @app.get("/check")
 async def check():
     return {"status": "ok"}
+
+@app.get("/")
+async def home():
+    return {
+        "name": "RAG QA System with Gemini LLM",
+        "status": "ok",
+        "docs": "/docs",
+        "playground": "/generative_ai/playground/",
+    }
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return Response(status_code=204)
 
 @app.post("/rag/genai", response_model = OutputQA)
 async def rag_genai(input_data: InputQA) -> OutputQA:

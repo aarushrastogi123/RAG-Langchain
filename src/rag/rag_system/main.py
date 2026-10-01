@@ -14,7 +14,7 @@ def build_rag_chain(llm, data_dir, data_type):
     doc_loaded = Loader(file_type=data_type).load_dir(data_dir, num_worker = 2)
     retriever = VectorDB(documents = doc_loaded).get_retriever()
     rag_chain = RAG(llm.model).get_chain(retriever)
-    return rag_chain
+    return rag_chain.with_types(input_type=InputQA)
     
 # if __name__ == "__main__":
     

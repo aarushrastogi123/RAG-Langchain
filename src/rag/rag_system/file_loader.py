@@ -6,7 +6,7 @@ import multiprocessing
 
 from langchain_core.documents import Document
 from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 project_root = Path(__file__).resolve().parent.parent.parent.parent
 

@@ -9,8 +9,6 @@ gemini_api_key = os.getenv("GEMINI_API_KEY")
 
 from langchain_groq import ChatGroq
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import PromptTemplate
-from langchain.schema import HumanMessage, SystemMessage
 
 class GeminiLLM:
     def __init__(self, model_name: str = "gemini-2.5-flash", api_key: str = None):
@@ -20,7 +18,7 @@ class GeminiLLM:
 
     def load_model(self):
         if not self.api_key:
-            raise ValueError("GOOGLE_API_KEY is not set. Please set it in your environment variables.")
+            raise ValueError("GEMINI_API_KEY is not set. Add it to the project-root .env file.")
         try:
             print(f'Loading Gemini model: {self.model_name}')
             model = ChatGoogleGenerativeAI(
